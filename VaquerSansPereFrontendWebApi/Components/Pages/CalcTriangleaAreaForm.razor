@@ -1,0 +1,39 @@
+﻿<!-- #region C#Code -->
+@page "/triangleAreaCalculator"
+
+@using VaquerSansPereFrontendWebApi.Services.Interfaces;
+@using Shared.DTOs.Request
+@using Shared.DTOs.Response
+
+@rendermode InteractiveServer
+
+@inject IAreaTrianguloService _areaTrianguloService;
+
+
+@code 
+{
+    private TriangleRequest Request = new() {Base = 0, Height = 0 };
+    private TriangleResponse Response = null;
+
+    protected async Task CalcTriangleArea() 
+        {
+            Response = await _areaTrianguloService.CalcAreaTriangulo(request: Request);
+        }
+}
+
+<!-- #endregion -->
+
+<!-- #region HTML -->
+
+<h1>Triangle area calculator</h1>
+
+<input type="number" step="any" @bind="Request.Base" />
+<input type="number" step="any" @bind="Request.Height" />
+<button @onclick="CalcTriangleArea">Calculate</button>
+<p>Surface (@Request.Base) * Height (@Request.Height) / 2</p>
+
+@if (Response is not null)
+{
+    <p>Total area: @Response.Area</p>
+}
+<!-- #endregion -->

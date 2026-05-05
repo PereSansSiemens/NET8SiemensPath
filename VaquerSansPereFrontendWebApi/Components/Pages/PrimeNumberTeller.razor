@@ -1,0 +1,32 @@
+﻿<!-- #region C#Code -->
+@page "/primeNumberTeller"
+
+@using VaquerSansPereFrontendWebApi.Services.Interfaces;
+@using Shared;
+
+@rendermode InteractiveServer
+
+@inject IIsPrimeNumberService _isPrimeNumberService;
+
+
+@code
+{
+    private int  Num;
+    private bool IsPrime;
+
+    protected async Task TellIfPrimeNumber()
+    {
+        IsPrime = await _isPrimeNumberService.IsPrime(num: Num);
+    }
+}
+
+<!-- #endregion -->
+<!-- #region HTML -->
+
+<h1>Prime number teller</h1>
+
+<input type="number" step="any" @bind="Num" />
+<button @onclick="TellIfPrimeNumber">Calculate</button>
+<p>Is the number a prime number ? : @IsPrime</p>
+
+<!-- #endregion -->

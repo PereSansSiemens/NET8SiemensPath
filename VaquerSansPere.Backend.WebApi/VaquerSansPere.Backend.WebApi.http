@@ -1,0 +1,52 @@
+@VaquerSansPere.Backend.WebApi_HostAddress = http://localhost:5041
+
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters
+Accept: application/json
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/3
+Accept: application/json
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/TriangleArea?superficie=50&altura=2
+Accept: application/json
+
+###
+POST {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/Order
+Content-Type: application/json
+[
+  0, 63, 3463, 2, 3529, 4
+]
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/CircleArea
+Accept: application/json
+
+###
+POST {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/GreaterValue
+Content-Type: application/json
+[
+  0, 63, 3463, 2, 3929, 4
+]
+
+###
+POST {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/LowestValue
+Content-Type: application/json
+[
+  1, 63, 3463, 2, 3929, 4
+]
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/PrimeNumber?num=5
+Accept: application/json
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/letters/Palindrome?word=ojorojo
+Accept: application/json
+
+###
+GET {{VaquerSansPere.Backend.WebApi_HostAddress}}/api/numbers

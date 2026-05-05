@@ -1,0 +1,50 @@
+﻿@page "/orderNumList"
+<!-- #region C#Code -->
+@using VaquerSansPereFrontendWebApi.Services.Interfaces
+
+@rendermode InteractiveServer
+
+@inject IOrderNumListService _orderNumListService
+
+@code
+{
+    private class NumberItem
+    {
+        public int Value { get; set; }
+    }
+
+    private List<NumberItem> NumList { get; set; } = new();
+    private List<int> OrderedList { get; set; } = new();
+
+    private void AddNum()
+    {
+        NumList.Add(new NumberItem());
+    }
+
+    protected async Task OrderList()
+    {
+        var RawList = NumList.Select(x => x.Value).ToList();
+        OrderedList = await _orderNumListService.OrderedNumList(list: RawList);
+    }
+}
+
+<!-- #endregion -->
+
+<!-- #region HTML -->
+
+<h3>Number list order</h3>
+
+@foreach (var item in NumList)
+{
+    <input type="number" step="any" @bind="item.Value" /><br/>
+}
+<br />
+<button @onclick="AddNum">Add number to list</button>
+<button @onclick="OrderList">Order list</button>
+
+<p>@string.Join(", ", OrderedList)</p>
+
+<!-- #endregion -->
+
+
+

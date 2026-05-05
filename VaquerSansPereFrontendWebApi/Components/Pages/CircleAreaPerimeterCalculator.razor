@@ -1,0 +1,40 @@
+﻿<!-- #region C#Code -->
+@page "/cirleAreaPerimeterCalculator"
+
+@using Shared.DTOs.Request
+@using Shared.DTOs.Response
+@using VaquerSansPereFrontendWebApi.Services.Interfaces;
+
+@rendermode InteractiveServer
+
+@inject ICircleAreaPerimeterService _circleAreaPerimeterService;
+
+
+@code
+{
+    private CircleRequest Request = new() { Radius = 0, Color = "none" };
+    private CircleResponse Response = null;
+
+    protected async Task ShowCircleAreaPerimeter()
+    {
+        Response = await _circleAreaPerimeterService.CalcCircleAreaPerimeter(request: Request);
+    }
+}
+
+<!-- #endregion -->
+
+<!-- #region HTML -->
+
+<h1>Circle area and perimeter calculator</h1>
+
+<input type="number" step="any" @bind="Request.Radius" />
+<input type="text" step="any" @bind="Request.Color" />
+<button @onclick="ShowCircleAreaPerimeter">Calculate</button>
+
+@if (Response is not null)
+{
+<p>Circle area: @Response.CircleArea</p>
+<p>Circle perimeter: @Response.CirclePerimeter</p>
+<p>Circle color: @Response.Color</p>
+}
+<!-- #endregion -->

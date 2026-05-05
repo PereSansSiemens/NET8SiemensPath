@@ -1,0 +1,32 @@
+﻿<!-- #region C#Code -->
+@page "/palindromeTeller"
+
+@using VaquerSansPereFrontendWebApi.Services.Interfaces;
+@using Shared;
+
+@rendermode InteractiveServer
+
+@inject IIsPalindromeWordService _isPalindromeWord;
+
+
+@code
+{
+    private string Word;
+    private bool IsPalindrome;
+
+    protected async Task TellIfPalindrome()
+    {
+        IsPalindrome = await _isPalindromeWord.IsPalindrome(word: Word);
+    }
+}
+
+<!-- #endregion -->
+<!-- #region HTML -->
+
+<h1>Palindrome teller</h1>
+
+<input type="text" step="any" @bind="Word" />
+<button @onclick="TellIfPalindrome">Calculate</button>
+<p>Is the word palindrome? : @IsPalindrome</p>
+
+<!-- #endregion -->

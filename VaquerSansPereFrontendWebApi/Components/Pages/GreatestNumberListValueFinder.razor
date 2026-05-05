@@ -1,0 +1,48 @@
+﻿@page "/greatestNumListValue"
+<!-- #region C#Code -->
+@using VaquerSansPereFrontendWebApi.Services.Interfaces
+
+@rendermode InteractiveServer
+
+@inject IFindGreatestValueService _findGreatestValueService
+
+@code
+{
+    private class NumberItem
+    {
+        public int Value { get; set; }
+    }
+
+    private List<NumberItem> NumList { get; set; } = new();
+    private int GreatestValue;
+
+    private void AddNum()
+    {
+        NumList.Add(new NumberItem());
+    }
+
+    protected async Task GetGreatestValue()
+    {
+        var RawList = NumList.Select(x => x.Value).ToList();
+        GreatestValue = await _findGreatestValueService.FindGreatestValue(list: RawList);
+    }
+}
+
+<!-- #endregion -->
+
+<!-- #region HTML -->
+
+<h3>Greatest number calculator</h3>
+
+@foreach (var item in NumList)
+{
+    <input type="number" step="any" @bind="item.Value" />
+    <br />
+}
+<br />
+<button @onclick="AddNum">Add number to list</button>
+<button @onclick="GetGreatestValue">Show greatest value</button>
+
+<p>@GreatestValue</p>
+
+<!-- #endregion -->

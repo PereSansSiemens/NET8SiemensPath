@@ -1,0 +1,57 @@
+﻿<!-- #region C#Code -->
+@page "/allBooks"
+
+@using Shared;
+@using Shared.Models
+@using VaquerSansPereFrontendWebApi.Services.Interfaces;
+
+@inject IBookService _bookService;
+
+@code
+{
+    private IEnumerable<Book> AllBooksData = null;
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        AllBooksData = await _bookService.GetAllBooks();
+    }
+}
+
+<!-- #endregion -->
+
+<!-- #region HTML -->
+
+<h1>Books Data</h1>
+
+@if (AllBooksData == null)
+{
+    <h4>Loading...</h4>
+}
+else
+{
+    @if (AllBooksData.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Isbn</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Page number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in AllBooksData)
+                {
+                    <tr>
+                        <td>@book.Isbn</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.PageNum</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+<!-- #endregion -->

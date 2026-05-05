@@ -1,0 +1,89 @@
+## Compiled source ##
+#####################
+*.dll
+*.exe
+*.app
+*.so
+*.dylib
+
+## Build directories ##
+######################
+bin/
+obj/
+out/
+publish/
+Generated Files/
+
+## User-specific files ##
+########################
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.userprefs
+
+## IDE files ##
+###############
+.vs/
+.vscode/
+
+## Package directories ##
+########################
+packages/
+*.nupkg
+*.snupkg
+
+# DotNetCore
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+*.log
+
+# OS-generated files
+########################
+.DS_Store
+Thumbs.db
+
+# ASP.NET / Web-related
+########################
+wwwroot/lib/
+wwwroot/dist/
+
+# Sensitive config (solo si los usas)
+######################################
+appsettings.Development.json
+secrets.json
+
+# Others
+########################
+*.tmp
+*.temp
+
+# Node Modules
+##############
+node_modules/
+
+# Certs
+#######
+*.pfx
+*.cert
+
+# Artifacts 
+###########
+staticwebassets.build.json
+staticwebassets.publish.json
+
+# Logs
+######
+Logs/
+*.trace
+*.json.log
+
+# External Tools
+#################
+.ionide/
+.tools/
+
+
